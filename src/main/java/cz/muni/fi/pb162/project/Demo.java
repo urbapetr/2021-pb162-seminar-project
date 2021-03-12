@@ -22,7 +22,7 @@ public class Demo {
         b.setX(1);
         b.setY(1);
         a.move(b);
-        System.out.println("[" + a.getX() + "," + a.getY() + "]");
-        System.out.println("[" + b.getX() + "," + b.getY() + "]");
+        System.out.println("[" + a.getX() + ", " + a.getY() + "]");
+        System.out.println("[" + b.getX() + ", " + b.getY() + "]");
     }
 }
