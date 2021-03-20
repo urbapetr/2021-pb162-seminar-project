@@ -46,12 +46,12 @@ public class Triangle {
             a.setY(vertex.getY());
             arrayOfVertex2D[0] = a;
         }
-        else if (index == 1) {
+        if (index == 1) {
             b.setX(vertex.getX());
             b.setY(vertex.getY());
             arrayOfVertex2D[1] = b;
         }
-        else if (index == 2) {
+        if (index == 2) {
             c.setX(vertex.getX());
             c.setY(vertex.getY());
             arrayOfVertex2D[2] = c;
@@ -71,7 +71,9 @@ public class Triangle {
      * @return true if triangle can be divided
      */
     public boolean divide(){
-        if (!(isDivided())) {return false;}
+        if (!(isDivided())) {
+            return false;
+        }
         Vertex2D ab = a.createMiddle(b);
         Vertex2D ac = a.createMiddle(c);
         Vertex2D bc = b.createMiddle(c);
@@ -91,6 +93,12 @@ public class Triangle {
     boolean isDivided(){
         return arrayOfTriangle[0] != null && arrayOfTriangle[1] != null && arrayOfTriangle[2] != null;
     }
+
+    /**
+     * Returb sub triangle
+     * @param index of sub triangle
+     * @return sub triangle or null
+     */
     public Triangle getSubTriangle(int index){
         if (!(isDivided()) || index < 0 || index > 2) {
             return null;
