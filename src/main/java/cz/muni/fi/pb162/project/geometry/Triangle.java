@@ -4,11 +4,10 @@ package cz.muni.fi.pb162.project.geometry;
  * @author Petr Urbanek
  */
 public class Triangle {
-    Vertex2D a = new Vertex2D(0,0);
-    Vertex2D b = new Vertex2D(0,0);
-    Vertex2D c = new Vertex2D(0,0);
-    Vertex2D[] arrayOfVertex2D = {a, b ,c};
-    Triangle[] arrayOfTriangle;
+    private Vertex2D[] arrayOfVertex2D = {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
+    private Triangle[] arrayOfTriangle = {new Triangle(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)),
+            new Triangle(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)),
+            new Triangle(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0))};
 
     /**
      * Create new triangle
@@ -40,18 +39,10 @@ public class Triangle {
      * @param index which angle we want to change
      * @param vertex new angle
      */
-    void setVertex(int index, Vertex2D vertex) {
-        if (index == 0) {
-            arrayOfVertex2D[0].setX(vertex.getX());
-            arrayOfVertex2D[0].setY(vertex.getY());
-        }
-        if (index == 1) {
-            arrayOfVertex2D[1].setX(vertex.getX());
-            arrayOfVertex2D[1].setY(vertex.getY());
-        }
-        if (index == 2) {
-            arrayOfVertex2D[2].setX(vertex.getX());
-            arrayOfVertex2D[2].setY(vertex.getY());
+    public void setVertex(int index, Vertex2D vertex) {
+        if (index >= 0 && index <=2){
+            arrayOfVertex2D[index].setX(vertex.getX());
+            arrayOfVertex2D[index].setY(vertex.getY());
         }
     }
 
@@ -60,7 +51,9 @@ public class Triangle {
      * @return string of angles
      */
     public String toString(){
-        return "Triangle: vertices=[" + arrayOfVertex2D[0].toString() + "] " + "[" + arrayOfVertex2D[1].toString() + "] " + "[" + arrayOfVertex2D[2].toString() + "]";
+        return "Triangle: vertices=" + arrayOfVertex2D[0].toString() + " " +
+                arrayOfVertex2D[1].toString() + " " +
+                arrayOfVertex2D[2].toString();
     }
 
     /**
@@ -75,8 +68,8 @@ public class Triangle {
         Vertex2D ac = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[2]);
         Vertex2D bc = arrayOfVertex2D[1].createMiddle(arrayOfVertex2D[2]);
         Triangle firstTriangle = new Triangle(arrayOfVertex2D[0],ab,ac);
-        Triangle secondTriangle = new Triangle(b,ab,bc);
-        Triangle thirdTriangle = new Triangle(c,bc,ac);
+        Triangle secondTriangle = new Triangle(arrayOfVertex2D[1],ab,bc);
+        Triangle thirdTriangle = new Triangle(arrayOfVertex2D[2],bc,ac);
         arrayOfTriangle[0] = firstTriangle;
         arrayOfTriangle[1] = secondTriangle;
         arrayOfTriangle[2] = thirdTriangle;
@@ -87,7 +80,7 @@ public class Triangle {
      * Is triangle already divided?
       * @return true if its not divided
      */
-    boolean isDivided(){
+    public boolean isDivided(){
         return arrayOfTriangle[0] != null && arrayOfTriangle[1] != null && arrayOfTriangle[2] != null;
     }
 
