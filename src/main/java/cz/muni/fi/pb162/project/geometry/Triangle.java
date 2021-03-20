@@ -4,11 +4,11 @@ package cz.muni.fi.pb162.project.geometry;
  * @author Petr Urbanek
  */
 public class Triangle {
-    private Vertex2D a;
-    private Vertex2D b;
-    private Vertex2D c;
-    private Vertex2D[] arrayOfVertex2D;
-    private Triangle[] arrayOfTriangle;
+    Vertex2D a = new Vertex2D(0,0);
+    Vertex2D b = new Vertex2D(0,0);
+    Vertex2D c = new Vertex2D(0,0);
+    Vertex2D[] arrayOfVertex2D = {a, b ,c};
+    Triangle[] arrayOfTriangle;
 
     /**
      * Create new triangle
@@ -42,19 +42,16 @@ public class Triangle {
      */
     void setVertex(int index, Vertex2D vertex) {
         if (index == 0) {
-            a.setX(vertex.getX());
-            a.setY(vertex.getY());
-            arrayOfVertex2D[0] = a;
+            arrayOfVertex2D[0].setX(vertex.getX());
+            arrayOfVertex2D[0].setY(vertex.getY());
         }
         if (index == 1) {
-            b.setX(vertex.getX());
-            b.setY(vertex.getY());
-            arrayOfVertex2D[1] = b;
+            arrayOfVertex2D[1].setX(vertex.getX());
+            arrayOfVertex2D[1].setY(vertex.getY());
         }
         if (index == 2) {
-            c.setX(vertex.getX());
-            c.setY(vertex.getY());
-            arrayOfVertex2D[2] = c;
+            arrayOfVertex2D[2].setX(vertex.getX());
+            arrayOfVertex2D[2].setY(vertex.getY());
         }
     }
 
@@ -63,7 +60,7 @@ public class Triangle {
      * @return string of angles
      */
     public String toString(){
-        return "Triangle: vertices=[" + a.toString() + "] " + "[" + b.toString() + "] " + "[" + c.toString() + "]";
+        return "Triangle: vertices=[" + arrayOfVertex2D[0].toString() + "] " + "[" + arrayOfVertex2D[1].toString() + "] " + "[" + arrayOfVertex2D[2].toString() + "]";
     }
 
     /**
@@ -74,10 +71,10 @@ public class Triangle {
         if (!(isDivided())) {
             return false;
         }
-        Vertex2D ab = a.createMiddle(b);
-        Vertex2D ac = a.createMiddle(c);
-        Vertex2D bc = b.createMiddle(c);
-        Triangle firstTriangle = new Triangle(a,ab,ac);
+        Vertex2D ab = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[1]);
+        Vertex2D ac = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[2]);
+        Vertex2D bc = arrayOfVertex2D[1].createMiddle(arrayOfVertex2D[2]);
+        Triangle firstTriangle = new Triangle(arrayOfVertex2D[0],ab,ac);
         Triangle secondTriangle = new Triangle(b,ab,bc);
         Triangle thirdTriangle = new Triangle(c,bc,ac);
         arrayOfTriangle[0] = firstTriangle;

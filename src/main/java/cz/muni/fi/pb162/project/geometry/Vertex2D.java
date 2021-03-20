@@ -18,13 +18,6 @@ public class Vertex2D {
     }
 
     /**
-     * Create Vertex without given arguments
-     */
-    public Vertex2D(){
-        this(0.0,0.0);
-    }
-
-    /**
      * Get the X value
      * @return x value
      */
