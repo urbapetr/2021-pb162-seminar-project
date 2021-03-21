@@ -48,10 +48,7 @@ public class Triangle {
         }
     }
 
-    /**
-     * Prints all angles of triangle
-     * @return string of angles
-     */
+    @Override
     public String toString(){
         return "Triangle: vertices=" + arrayOfVertex2D[0].toString() + " " +
                 arrayOfVertex2D[1].toString() + " " +
