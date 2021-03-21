@@ -4,10 +4,12 @@ package cz.muni.fi.pb162.project.geometry;
  * @author Petr Urbanek
  */
 public class Triangle {
-    private Vertex2D[] arrayOfVertex2D = {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
-    private Triangle[] arrayOfTriangle = {new Triangle(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)),
-            new Triangle(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)),
-            new Triangle(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0))};
+    private Vertex2D[] arrayOfVertex2D = new Vertex2D[] {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
+    private Triangle[] arrayOfTriangle = new Triangle[] {
+            new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0)),
+            new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0)),
+            new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0))
+    };
 
     /**
      * Create new triangle
@@ -90,9 +92,9 @@ public class Triangle {
      * @return sub triangle or null
      */
     public Triangle getSubTriangle(int index){
-        if (!(isDivided()) || index < 0 || index > 2) {
-            return null;
+        if (isDivided() && index >= 0 && index <= 2) {
+            return arrayOfTriangle[index];
         }
-        return arrayOfTriangle[index];
+        return null;
     }
 }
