@@ -29,6 +29,13 @@ public class TriangleTest {
         assertThat(triangle.getVertex(1)).isEqualToComparingFieldByField(vertex2);
         assertThat(triangle.getVertex(2)).isEqualToComparingFieldByField(vertex3);
 
+        //tenhle test pada pokud se Vertex2D plni kopirovanim (tak jak to delate), coz je
+        //podle mne dobry postup (je urcite bezpecny), ale tento test na tuhle situaci neni
+        //nachystany... aby ve vasi variante problehl dobre, museli bychom ve tride Vertex2D
+        //definovat metodu equals() (budeme se o nic ucit pozdeji), ktera poradi Jave jak
+        //porovnavat dva nase objekty... bez equals() Java porovnava Vertex2D pole jejich
+        //adresy v pameti (stejna adresa -> stejny objekt, jina adresa -> jiny objekt a to
+        //i presto, ze obsahove je treba stejny)
         assertThat(triangle).isEqualToComparingFieldByField(new Triangle(vertex1, vertex2, vertex3));
     }
 

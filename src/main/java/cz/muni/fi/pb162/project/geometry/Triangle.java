@@ -52,8 +52,12 @@ public class Triangle {
      */
     public void setVertex(int index, Vertex2D vertex) {
         if (index >= 0 && index <=2){
-            arrayOfVertex2D[index].setX(vertex.getX());
-            arrayOfVertex2D[index].setY(vertex.getY());
+            //arrayOfVertex2D[index].setX(vertex.getX());
+            //arrayOfVertex2D[index].setY(vertex.getY());
+            //
+            //kopirovani nahrazeno prirazenim... coz umozni Jave uvidet,
+            //ze arrayOfVertex2D[index] a vertex jsou stejne
+            arrayOfVertex2D[index] = vertex;
         }
     }
 
