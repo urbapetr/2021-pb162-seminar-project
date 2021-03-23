@@ -5,11 +5,20 @@ package cz.muni.fi.pb162.project.geometry;
  */
 public class Triangle {
     private Vertex2D[] arrayOfVertex2D = new Vertex2D[] {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
+    //private Vertex2D[] arrayOfVertex2D = new Vertex2D[] {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
+    // tohle je rekurzivni definice: pro vytvoreni Triangle je potreba vytvorit 3x Triangle (temi new Triangle)
+    // proc je tady vlastne tento konstruktor?
+    /*
     private Triangle[] arrayOfTriangle = new Triangle[] {
             new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0)),
             new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0)),
             new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0))
     };
+    */
+
+    // tohle vytvori pole o delce 3, ale obsah pole je nyni {null,null,null}
+    // (a bude fungovat isDivided() mimochodem)
+    private Triangle[] arrayOfTriangle = new Triangle[3];
 
     /**
      * Create new triangle
@@ -63,9 +72,8 @@ public class Triangle {
      * @return true if triangle can be divided
      */
     public boolean divide(){
-        if (!(isDivided())) {
-            return false;
-        }
+        if ( isDivided() ) return false;
+
         Vertex2D ab = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[1]);
         Vertex2D ac = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[2]);
         Vertex2D bc = arrayOfVertex2D[1].createMiddle(arrayOfVertex2D[2]);
