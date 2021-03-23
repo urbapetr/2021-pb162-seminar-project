@@ -5,11 +5,8 @@ package cz.muni.fi.pb162.project.geometry;
  */
 public class Triangle {
     private Vertex2D[] arrayOfVertex2D = new Vertex2D[] {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
-    private Triangle[] arrayOfTriangle = new Triangle[] {
-            new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0)),
-            new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0)),
-            new Triangle(new Vertex2D(0.0,0.0),new Vertex2D(0.0,0.0), new Vertex2D(0.0,0.0))
-    };
+    private Triangle[] arrayOfTriangle = new Triangle[3];
+
 
     /**
      * Create new triangle
@@ -17,11 +14,18 @@ public class Triangle {
      * @param v2 is second angle
      * @param v3 is third angle
      */
-
     public Triangle(Vertex2D v1, Vertex2D v2,Vertex2D v3){
         setVertex(0,v1);
         setVertex(1,v2);
         setVertex(2,v3);
+    }
+
+
+    /**
+     * Create new Triangle without arguments
+     */
+    public Triangle(){
+        new Triangle(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0));
     }
 
     /**
@@ -43,10 +47,10 @@ public class Triangle {
      */
     public void setVertex(int index, Vertex2D vertex) {
         if (index >= 0 && index <=2){
-            arrayOfVertex2D[index].setX(vertex.getX());
-            arrayOfVertex2D[index].setY(vertex.getY());
+            arrayOfVertex2D[index] = vertex;
         }
     }
+
 
     @Override
     public String toString(){
@@ -60,7 +64,7 @@ public class Triangle {
      * @return true if triangle can be divided
      */
     public boolean divide(){
-        if (!(isDivided())) {
+        if ( isDivided() ) {
             return false;
         }
         Vertex2D ab = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[1]);
@@ -74,6 +78,7 @@ public class Triangle {
         arrayOfTriangle[2] = thirdTriangle;
         return true;
     }
+
 
     /**
      * Is triangle already divided?
