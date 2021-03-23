@@ -76,7 +76,9 @@ public class Triangle {
      * @return true if triangle can be divided
      */
     public boolean divide(){
-        if ( isDivided() ) return false;
+        if ( isDivided() ) {
+            return false;
+        }
 
         Vertex2D ab = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[1]);
         Vertex2D ac = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[2]);
