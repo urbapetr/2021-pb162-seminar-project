@@ -3,10 +3,19 @@ package cz.muni.fi.pb162.project.geometry;
 /**
  * @author Petr Urbanek
  */
-
 public class Vertex2D {
+    private double xCoordinate;
+    private double yCoordinate;
 
-    private double xCoordinate, yCoordinate;
+    /**
+     * Create Vertex object
+     * @param x is coordinate x
+     * @param y is coordinate y
+     */
+    public Vertex2D(double x, double y){
+        setX(x);
+        setY(y);
+    }
 
     /**
      * Get the X value
@@ -44,24 +53,20 @@ public class Vertex2D {
      * Return the coordinates
      * @return coordinates
      */
-    public String getInfo() {
+    public String toString() {
         return "[" + xCoordinate + ", " + yCoordinate + "]";
     }
 
     /**
-     * Sum the coordinates
-     * @return sum of coordinates
+     * Create middle of Vertex with another vertex
+     * @param vertex second vertex
+     * @return vertex in the middle
      */
-    public double sumCoordinates() {
-        return xCoordinate + yCoordinate;
-    }
-
-    /**
-     * Move one vertex
-     * @param vertex value
-     */
-    public void move(Vertex2D vertex) {
-        xCoordinate = xCoordinate + vertex.getX();
-        yCoordinate = yCoordinate + vertex.getY();
+    public Vertex2D createMiddle(Vertex2D vertex) {
+        double newX = (vertex.getX() + xCoordinate) / 2;
+        double newY = (vertex.getY() + yCoordinate) / 2;
+        Vertex2D newVertex;
+        newVertex = new Vertex2D(newX, newY);
+        return newVertex;
     }
 }
