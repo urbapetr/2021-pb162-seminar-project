@@ -32,8 +32,7 @@ public final class Draw extends JFrame {
     private static final Triangle DIVIDED_TRIANGLE = new Triangle(
             new Vertex2D(-160, -160),
             new Vertex2D(0, 160),
-            new Vertex2D(160, -160),
-            4);
+            new Vertex2D(160, -160));
 
     private Graphics graphics;
 
