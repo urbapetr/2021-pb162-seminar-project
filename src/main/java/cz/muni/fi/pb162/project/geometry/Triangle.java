@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * Create Triangle with 3 Vertex2D
  * @author Petr Urbanek
  */
 public class Triangle {
@@ -41,9 +42,8 @@ public class Triangle {
     }
 
     /**
-     * Return wanted angle
-     * @param index which angle is wanted
-     * @return wanted angle
+     * @param index which vertex
+     * @return vertex
      */
     public Vertex2D getVertex(int index){
         if (index >= 0 && index <= 2) {
@@ -54,9 +54,9 @@ public class Triangle {
 
     @Override
     public String toString(){
-        return "Triangle: vertices=" + arrayOfVertex2D[0].toString() + " " +
-                arrayOfVertex2D[1].toString() + " " +
-                arrayOfVertex2D[2].toString();
+        return "Triangle: vertices=" + arrayOfVertex2D[0] + " " +
+                arrayOfVertex2D[1] + " " +
+                arrayOfVertex2D[2];
     }
 
     /**

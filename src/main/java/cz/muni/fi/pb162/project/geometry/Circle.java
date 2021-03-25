@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * Create Circle with radius and center
  * @author Petr Urbanek
  */
 public class Circle {

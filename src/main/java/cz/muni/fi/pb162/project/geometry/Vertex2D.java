@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * Create Vertex with x and y coordinate
  * @author Petr Urbanek
  */
 public class Vertex2D {
@@ -18,7 +19,6 @@ public class Vertex2D {
     }
 
     /**
-     * Get the X value
      * @return x value
      */
     public double getX() {
@@ -26,17 +26,13 @@ public class Vertex2D {
     }
 
     /**
-     * Get Y value
      * @return y value
      */
     public double getY() {
         return yCoordinate;
     }
 
-    /**
-     * Return the coordinates
-     * @return coordinates
-     */
+    @Override
     public String toString() {
         return "[" + xCoordinate + ", " + yCoordinate + "]";
     }
