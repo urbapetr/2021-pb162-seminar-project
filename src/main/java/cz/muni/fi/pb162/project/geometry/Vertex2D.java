@@ -1,11 +1,12 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * Create Vertex with x and y coordinate
  * @author Petr Urbanek
  */
 public class Vertex2D {
-    private double xCoordinate;
-    private double yCoordinate;
+    private final double xCoordinate;
+    private final double yCoordinate;
 
     /**
      * Create Vertex object
@@ -13,12 +14,11 @@ public class Vertex2D {
      * @param y is coordinate y
      */
     public Vertex2D(double x, double y){
-        setX(x);
-        setY(y);
+        xCoordinate = x;
+        yCoordinate = y;
     }
 
     /**
-     * Get the X value
      * @return x value
      */
     public double getX() {
@@ -26,33 +26,13 @@ public class Vertex2D {
     }
 
     /**
-     * Sets the x value
-     * @param x new value of x
-     */
-    public void setX(double x) {
-        xCoordinate = x;
-    }
-
-    /**
-     * Get Y value
      * @return y value
      */
     public double getY() {
         return yCoordinate;
     }
 
-    /**
-     * Sets Y value
-     * @param y new value of y
-     */
-    public void setY(double y) {
-        yCoordinate = y;
-    }
-
-    /**
-     * Return the coordinates
-     * @return coordinates
-     */
+    @Override
     public String toString() {
         return "[" + xCoordinate + ", " + yCoordinate + "]";
     }
@@ -68,5 +48,17 @@ public class Vertex2D {
         Vertex2D newVertex;
         newVertex = new Vertex2D(newX, newY);
         return newVertex;
+    }
+
+    /**
+     * Count distance between two Vertexes
+     * @param vertex second vertex
+     * @return distance
+     */
+    public double distance(Vertex2D vertex){
+        if (vertex == null) {
+            return -1.0;
+        }
+        return Math.sqrt(Math.pow(xCoordinate - vertex.getX(), 2) + Math.pow(yCoordinate - vertex.getY(), 2));
     }
 }

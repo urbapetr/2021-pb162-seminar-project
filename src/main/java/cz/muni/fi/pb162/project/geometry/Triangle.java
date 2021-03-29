@@ -1,12 +1,12 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * Create Triangle with 3 Vertex2D
  * @author Petr Urbanek
  */
 public class Triangle {
-    private Vertex2D[] arrayOfVertex2D = new Vertex2D[] {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
-    private Triangle[] arrayOfTriangle = new Triangle[3];
-
+    private final Vertex2D[] arrayOfVertex2D = new Vertex2D[] {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
+    private final Triangle[] arrayOfTriangle = new Triangle[3];
 
     /**
      * Create new triangle
@@ -15,11 +15,10 @@ public class Triangle {
      * @param v3 is third angle
      */
     public Triangle(Vertex2D v1, Vertex2D v2,Vertex2D v3){
-        setVertex(0,v1);
-        setVertex(1,v2);
-        setVertex(2,v3);
+        arrayOfVertex2D[0] = v1;
+        arrayOfVertex2D[1] = v2;
+        arrayOfVertex2D[2] = v3;
     }
-
 
     /**
      * Create new Triangle without arguments
@@ -29,9 +28,22 @@ public class Triangle {
     }
 
     /**
-     * Return wanted angle
-     * @param index which angle is wanted
-     * @return wanted angle
+     * Create Triangle and divide him
+     * @param v1 first Vertex
+     * @param v2 second Vertex
+     * @param v3 third Vertex
+     * @param depth how much deep will we go
+     */
+    public Triangle(Vertex2D v1, Vertex2D v2,Vertex2D v3, int depth){
+        arrayOfVertex2D[0] = v1;
+        arrayOfVertex2D[1] = v2;
+        arrayOfVertex2D[2] = v3;
+        divide(depth);
+    }
+
+    /**
+     * @param index which vertex
+     * @return vertex
      */
     public Vertex2D getVertex(int index){
         if (index >= 0 && index <= 2) {
@@ -40,23 +52,11 @@ public class Triangle {
         return null;
     }
 
-    /**
-     * Set angle into different angle
-     * @param index which angle we want to change
-     * @param vertex new angle
-     */
-    public void setVertex(int index, Vertex2D vertex) {
-        if (index >= 0 && index <=2){
-            arrayOfVertex2D[index] = vertex;
-        }
-    }
-
-
     @Override
     public String toString(){
-        return "Triangle: vertices=" + arrayOfVertex2D[0].toString() + " " +
-                arrayOfVertex2D[1].toString() + " " +
-                arrayOfVertex2D[2].toString();
+        return "Triangle: vertices=" + arrayOfVertex2D[0] + " " +
+                arrayOfVertex2D[1] + " " +
+                arrayOfVertex2D[2];
     }
 
     /**
@@ -82,7 +82,7 @@ public class Triangle {
 
     /**
      * Is triangle already divided?
-      * @return true if its not divided
+     * @return true if its not divided
      */
     public boolean isDivided(){
         return arrayOfTriangle[0] != null && arrayOfTriangle[1] != null && arrayOfTriangle[2] != null;
@@ -99,4 +99,28 @@ public class Triangle {
         }
         return null;
     }
+
+    /**
+     * @return true if Triangle is Equilateral
+     */
+    public boolean isEquilateral(){
+        double d1 = arrayOfVertex2D[0].distance(arrayOfVertex2D[1]);
+        double d2 = arrayOfVertex2D[0].distance(arrayOfVertex2D[2]);
+        double d3 = arrayOfVertex2D[1].distance(arrayOfVertex2D[2]);
+        return Math.abs(d1-d2) < 0.001 && Math.abs(d1-d3) < 0.001;
+    }
+
+    /**
+     * Divide Tringle into more triangles
+     * @param depth of subtriangles
+     */
+    public void divide(int depth){
+        if (depth > 0){
+            divide();
+            for (int i = 0; i < 3; i++){
+                arrayOfTriangle[i].divide(depth-1);
+            }
+        }
+    }
 }
+
