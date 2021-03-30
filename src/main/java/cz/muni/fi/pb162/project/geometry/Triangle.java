@@ -105,8 +105,8 @@ public class Triangle {
         double d1 = arrayOfVertex2D[0].distance(arrayOfVertex2D[1]);
         double d2 = arrayOfVertex2D[0].distance(arrayOfVertex2D[2]);
         double d3 = arrayOfVertex2D[1].distance(arrayOfVertex2D[2]);
-        double cmp_abs = 0.001;
-        return Math.abs(d1-d2) < cmp_abs && Math.abs(d1-d3) < cmp_abs;
+        double cmpAbs = 0.001;
+        return Math.abs(d1-d2) < cmpAbs && Math.abs(d1-d3) < cmpAbs;
     }
 
     /**
