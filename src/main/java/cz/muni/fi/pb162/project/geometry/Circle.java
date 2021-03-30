@@ -22,8 +22,7 @@ public class Circle implements Measurable, Circular{
      * Create Circle without arguments
      */
     public Circle(){
-        center = new Vertex2D(0,0);
-        radius = 1;
+        this(new Vertex2D(0,0), 1);
     }
 
     @Override

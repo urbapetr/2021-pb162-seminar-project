@@ -1,21 +1,22 @@
 package cz.muni.fi.pb162.project;
 
+import cz.muni.fi.pb162.project.geometry.Circular;
+import cz.muni.fi.pb162.project.geometry.Square;
+import cz.muni.fi.pb162.project.geometry.Vertex2D;
 
 /**
- * Class for running main method.
- *
- * @author TODO: put your name here
+ * @author Petr Urbanek
  */
 public class Demo {
 
     /**
-     * Runs the code.
-     *
-     * @param args command line arguments, will be ignored
+     * start main function
+     * @param args given argument
      */
     public static void main(String[] args) {
-
-        System.out.println("Hello world!");
-
+        Vertex2D center = new Vertex2D(0,0);
+        double diameter = 100;
+        Circular newSquare = new Square(center, diameter);
+        System.out.println(newSquare.toString());
     }
 }
