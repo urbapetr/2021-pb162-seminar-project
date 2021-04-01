@@ -24,7 +24,7 @@ public class Triangle {
      * Create new Triangle without arguments
      */
     public Triangle(){
-        new Triangle(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0));
+        this(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0));
     }
 
     /**
@@ -35,9 +35,7 @@ public class Triangle {
      * @param depth how much deep will we go
      */
     public Triangle(Vertex2D v1, Vertex2D v2,Vertex2D v3, int depth){
-        arrayOfVertex2D[0] = v1;
-        arrayOfVertex2D[1] = v2;
-        arrayOfVertex2D[2] = v3;
+        this(v1, v2, v3);
         divide(depth);
     }
 
@@ -107,7 +105,8 @@ public class Triangle {
         double d1 = arrayOfVertex2D[0].distance(arrayOfVertex2D[1]);
         double d2 = arrayOfVertex2D[0].distance(arrayOfVertex2D[2]);
         double d3 = arrayOfVertex2D[1].distance(arrayOfVertex2D[2]);
-        return Math.abs(d1-d2) < 0.001 && Math.abs(d1-d3) < 0.001;
+        double cmpAbs = 0.001;
+        return Math.abs(d1-d2) < cmpAbs && Math.abs(d1-d3) < cmpAbs;
     }
 
     /**

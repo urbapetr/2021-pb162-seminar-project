@@ -59,6 +59,8 @@ public class Vertex2D {
         if (vertex == null) {
             return -1.0;
         }
-        return Math.sqrt(Math.pow(xCoordinate - vertex.getX(), 2) + Math.pow(yCoordinate - vertex.getY(), 2));
+        double x = xCoordinate - vertex.getX();
+        double y = yCoordinate - vertex.getY();
+        return Math.sqrt(x*x+y*y);
     }
 }
