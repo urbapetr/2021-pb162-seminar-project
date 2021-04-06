@@ -1,5 +1,6 @@
 package cz.muni.fi.pb162.project.demo;
 
+import cz.muni.fi.pb162.project.Demo;
 import cz.muni.fi.pb162.project.helper.OutputTester;
 import org.junit.Test;
 

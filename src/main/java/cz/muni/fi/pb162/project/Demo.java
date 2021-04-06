@@ -1,6 +1,9 @@
 package cz.muni.fi.pb162.project;
 
 
+import cz.muni.fi.pb162.project.geometry.RegularOctagon;
+import cz.muni.fi.pb162.project.geometry.Vertex2D;
+
 /**
  * Class for running main method.
  *
@@ -15,7 +18,10 @@ public class Demo {
      */
     public static void main(String[] args) {
 
-        System.out.println("Hello world!");
+        Vertex2D center = new Vertex2D(0,0);
+        double radius = 1;
+        RegularOctagon octagon = new RegularOctagon(center, radius);
+        System.out.println(octagon.toString());
 
     }
 }
