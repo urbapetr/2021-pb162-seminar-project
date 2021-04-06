@@ -22,22 +22,6 @@ public class Square extends GeneralRegularPolygon implements Circular {
         this(circular.getCenter(),2*circular.getRadius());
     }
 
-    /**
-     * Return one Vetrex of square
-     * @param index which vertex is wanted
-     * @return wanted vertex, if index is out of range return null
-     */
-    @Override
-    public Vertex2D getVertex(int index){
-        switch (index){
-            case 0: return new Vertex2D(getCenter().getX()-(getRadius()), getCenter().getY());
-            case 1: return new Vertex2D(getCenter().getX(), getCenter().getY()-(getRadius()));
-            case 2: return new Vertex2D(getCenter().getX()+(getRadius()), getCenter().getY());
-            case 3: return new Vertex2D(getCenter().getX(), getCenter().getY()+(getRadius()));
-            default: return null;
-        }
-    }
-
     @Override
     public String toString(){
         return "Square: vertices=" + getVertex(0).toString() + " " +
