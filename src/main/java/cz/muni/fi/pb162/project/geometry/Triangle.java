@@ -1,18 +1,19 @@
 package cz.muni.fi.pb162.project.geometry;
+import cz.muni.fi.pb162.project.utils.SimpleMath;
 
 /**
  * Create Triangle with 3 Vertex2D
  * @author Petr Urbanek
  */
-public class Triangle {
+public class Triangle implements Measurable {
     private final Vertex2D[] arrayOfVertex2D = new Vertex2D[] {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
     private final Triangle[] arrayOfTriangle = new Triangle[3];
 
     /**
      * Create new triangle
-     * @param v1 is first angle
-     * @param v2 is second angle
-     * @param v3 is third angle
+     * @param v1 is first Vertex
+     * @param v2 is second Vertex
+     * @param v3 is third Vertex
      */
     public Triangle(Vertex2D v1, Vertex2D v2,Vertex2D v3){
         arrayOfVertex2D[0] = v1;
@@ -120,6 +121,18 @@ public class Triangle {
                 arrayOfTriangle[i].divide(depth-1);
             }
         }
+    }
+
+    @Override
+    public double getWidth() {
+        Triangle triangle = new Triangle(arrayOfVertex2D[0], arrayOfVertex2D[1], arrayOfVertex2D[2]);
+        return SimpleMath.maxX(triangle) - SimpleMath.minX(triangle);
+    }
+
+    @Override
+    public double getHeight(){
+        Triangle triangle = new Triangle(arrayOfVertex2D[0], arrayOfVertex2D[1], arrayOfVertex2D[2]);
+        return SimpleMath.maxY(triangle) - SimpleMath.minY(triangle);
     }
 }
 
