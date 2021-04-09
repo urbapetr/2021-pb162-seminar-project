@@ -25,10 +25,6 @@ public class Circle extends GeneralRegularPolygon implements Measurable, Circula
         this(new Vertex2D(0,0), 1);
     }
 
-    /**
-     * what is center and radius
-     * @return connected center and radius in string
-     */
     @Override
     public String toString(){
         return "Circle: center=" + getCenter().toString() + ", radius=" + getRadius();

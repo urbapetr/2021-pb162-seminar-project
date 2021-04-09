@@ -23,9 +23,6 @@ public class Gauger {
      */
     public static void printMeasurement(Triangle triangle){
         System.out.println(triangle.toString());
-        Measurable shape = new Triangle(triangle.getVertex(0),
-                triangle.getVertex(1),
-                triangle.getVertex(2));
-        printMeasurement(shape);
+        printMeasurement((Measurable) triangle);
     }
 }
