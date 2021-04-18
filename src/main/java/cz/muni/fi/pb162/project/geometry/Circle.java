@@ -35,10 +35,7 @@ public class Circle implements Measurable, Circular{
         return center;
     }
 
-    /**
-     * what is center and radius
-     * @return connected center and radius in string
-     */
+    @Override
     public String toString(){
         return "Circle: center=" + center.toString() + ", radius=" + radius;
     }

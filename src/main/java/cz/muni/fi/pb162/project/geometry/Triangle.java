@@ -125,14 +125,12 @@ public class Triangle implements Measurable {
 
     @Override
     public double getWidth() {
-        Triangle triangle = new Triangle(arrayOfVertex2D[0], arrayOfVertex2D[1], arrayOfVertex2D[2]);
-        return SimpleMath.maxX(triangle) - SimpleMath.minX(triangle);
+        return SimpleMath.maxX(this) - SimpleMath.minX(this);
     }
 
     @Override
     public double getHeight(){
-        Triangle triangle = new Triangle(arrayOfVertex2D[0], arrayOfVertex2D[1], arrayOfVertex2D[2]);
-        return SimpleMath.maxY(triangle) - SimpleMath.minY(triangle);
+        return SimpleMath.maxY(this) - SimpleMath.minY(this);
     }
 }
 

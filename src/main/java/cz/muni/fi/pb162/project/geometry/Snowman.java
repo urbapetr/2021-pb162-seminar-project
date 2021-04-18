@@ -5,10 +5,10 @@ package cz.muni.fi.pb162.project.geometry;
  */
 public class Snowman{
 
-    private final int numberOfBalls = 4;
-    private final Circular[] balls = new Circular[numberOfBalls];
+    public static final int NUMBEROFBALLS = 4;
+    private static final Circular[] BALLS = new Circular[NUMBEROFBALLS];
     private final double reduction;
-    private final double privateConst = 0.8;
+    private static final double REDUCTIONCONST = 0.8;
 
     /**
      * Snowman constructor
@@ -17,31 +17,33 @@ public class Snowman{
      */
     public Snowman(Circular circular, double reduction) {
         if (reduction <= 0 || reduction > 1) {
-            this.reduction = privateConst;
+            this.reduction = REDUCTIONCONST;
         } else{
             this.reduction = reduction;
         }
-        balls[0] = circular;
+        BALLS[0] = circular;
         Vertex2D center = circular.getCenter();
         double yCoo = center.getY()+circular.getRadius()+ circular.getRadius()*this.reduction;
         Vertex2D newCenter = new Vertex2D(center.getX(),
                 yCoo);
-        ballCreater(1, newCenter , circular.getRadius() * this.reduction);
+        if (1 < NUMBEROFBALLS) {
+            ballCreater(1, newCenter, circular.getRadius() * this.reduction);
+        }
     }
 
     /**
      * giv balls into array
      * @param i where in array will the ball be
      * @param center of next ball
-     * @param radian of next ball
+     * @param radius of next ball
      */
-    private void ballCreater(int i,Vertex2D center , double radian){
-        if (i < numberOfBalls){
-            Circle nextSphere = new Circle(center, radian);
-            balls[i] = nextSphere;
-            double yCoo = center.getY()+radian+radian*this.reduction;
-            Vertex2D newCenter = new Vertex2D(center.getX(), yCoo);
-            ballCreater(i+1, newCenter, radian * this.reduction);
+    private void ballCreater(int i,Vertex2D center , double radius){
+        double yCoo = center.getY()+radius+radius*this.reduction;
+        Vertex2D newCenter = new Vertex2D(center.getX(), yCoo);
+        Circle nextSphere = new Circle(center, radius);
+        if (i < NUMBEROFBALLS){
+            BALLS[i] = nextSphere;
+            ballCreater(i+1, newCenter, radius * this.reduction);
         }
 
     }
@@ -51,6 +53,6 @@ public class Snowman{
      * @return all balls
      */
     public Circular[] getBalls(){
-        return balls;
+        return BALLS;
     }
 }
