@@ -1,12 +1,12 @@
 package cz.muni.fi.pb162.project.geometry;
 
+import static cz.muni.fi.pb162.project.geometry.Color.RED;
+
 /**
  * Create Circle with radius and center
  * @author Petr Urbanek
  */
-public class Circle implements Measurable, Circular{
-    private final Vertex2D center;
-    private final double radius;
+public class Circle extends GeneralRegularPolygon implements Measurable, Circular{
 
     /**
      * Circle creator
@@ -14,8 +14,8 @@ public class Circle implements Measurable, Circular{
      * @param givenRadius new radius of our circle
      */
     public Circle(Vertex2D givenCenter, double givenRadius){
-        center = givenCenter;
-        radius = givenRadius;
+        super(givenCenter, Integer.MAX_VALUE, givenRadius);
+        setColor(RED);
     }
 
     /**
@@ -26,27 +26,12 @@ public class Circle implements Measurable, Circular{
     }
 
     @Override
-    public double getRadius(){
-        return radius;
-    }
-
-    @Override
-    public Vertex2D getCenter(){
-        return center;
-    }
-
-    @Override
     public String toString(){
-        return "Circle: center=" + center.toString() + ", radius=" + radius;
+        return "Circle: center=" + getCenter().toString() + ", radius=" + getRadius();
     }
 
     @Override
-    public double getWidth(){
-        return 2 * radius;
-    }
-
-    @Override
-    public double getHeight(){
-        return 2 * radius;
+    public double getEdgeLength() {
+        return 0;
     }
 }
