@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * class for octagons
  * @author Petr Urbanek
  */
 public class RegularOctagon extends GeneralRegularPolygon{

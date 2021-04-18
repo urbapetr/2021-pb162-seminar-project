@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * basic color possibilities
  * @author Petr Urbanek
  */
 public enum Color {

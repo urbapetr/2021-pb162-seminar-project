@@ -3,25 +3,26 @@ package cz.muni.fi.pb162.project.geometry;
 import static cz.muni.fi.pb162.project.geometry.Color.BLACK;
 
 /**
+ * Class that works as superclass of regular polygons
  * @author Petr Urbanek
  */
 public class GeneralRegularPolygon implements RegularPolygon, Colored{
 
-    private Vertex2D center;
-    private int numberOfEdges;
-    private double circumCircle;
+    private final Vertex2D center;
+    private final int numberOfEdges;
+    private final double circumscribedCircle;
     private Color color;
 
     /**
      * GeneralRegularPolygon class creator
      * @param center of new polygon
      * @param numberOfEdges how many edges will polygon have
-     * @param circumCircle radius of circle around our palygon
+     * @param circumscribedCircle radius of circle around our palygon
      */
-    public GeneralRegularPolygon(Vertex2D center, int numberOfEdges,double circumCircle){
+    public GeneralRegularPolygon(Vertex2D center, int numberOfEdges,double circumscribedCircle){
         this.center = center;
         this.numberOfEdges = numberOfEdges;
-        this.circumCircle = circumCircle;
+        this.circumscribedCircle = circumscribedCircle;
         setColor(BLACK);
     }
 
@@ -57,15 +58,15 @@ public class GeneralRegularPolygon implements RegularPolygon, Colored{
     }
 
     public double getRadius(){
-        return circumCircle;
+        return circumscribedCircle;
     }
 
     public double getWidth(){
-        return 2 * circumCircle;
+        return 2 * circumscribedCircle;
     }
 
     public double getHeight(){
-        return  2 * circumCircle;
+        return  2 * circumscribedCircle;
     }
 
     @Override

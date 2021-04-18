@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * Crate square shape
  * @author Petr Urbanek
  */
 public class Square extends GeneralRegularPolygon implements Circular {

@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * Class that create snowman of regularPolygons
  * @author Petr Urbanek
  */
 public class Snowman{
@@ -13,7 +14,7 @@ public class Snowman{
     /**
      * Snowman constructor
      * @param regularPolygon given first "ball"
-     * @param reduction how much will be balls reducted
+     * @param reduction how much will be balls reduced
      */
     public Snowman(RegularPolygon regularPolygon, double reduction) {
         if (reduction <= 0 || reduction > 1) {
