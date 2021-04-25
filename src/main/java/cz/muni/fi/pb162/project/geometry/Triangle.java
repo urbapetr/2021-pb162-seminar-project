@@ -1,12 +1,10 @@
 package cz.muni.fi.pb162.project.geometry;
-import cz.muni.fi.pb162.project.utils.SimpleMath;
 
 /**
  * Create Triangle with 3 Vertex2D
  * @author Petr Urbanek
  */
-public class Triangle implements Measurable {
-    private final Vertex2D[] arrayOfVertex2D = new Vertex2D[] {new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)};
+public class Triangle extends ArrayPolygon implements Measurable {
     private final Triangle[] arrayOfTriangle = new Triangle[3];
 
     /**
@@ -16,16 +14,14 @@ public class Triangle implements Measurable {
      * @param v3 is third Vertex
      */
     public Triangle(Vertex2D v1, Vertex2D v2,Vertex2D v3){
-        arrayOfVertex2D[0] = v1;
-        arrayOfVertex2D[1] = v2;
-        arrayOfVertex2D[2] = v3;
+        super(new Vertex2D[]{v1, v2, v3});
     }
 
     /**
      * Create new Triangle without arguments
      */
     public Triangle(){
-        this(new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0));
+        super(new Vertex2D[]{new Vertex2D(0,0),new Vertex2D(0,0),new Vertex2D(0,0)});
     }
 
     /**
@@ -40,22 +36,11 @@ public class Triangle implements Measurable {
         divide(depth);
     }
 
-    /**
-     * @param index which vertex
-     * @return vertex
-     */
-    public Vertex2D getVertex(int index){
-        if (index >= 0 && index <= 2) {
-            return arrayOfVertex2D[index];
-        }
-        return null;
-    }
-
     @Override
     public String toString(){
-        return "Triangle: vertices=" + arrayOfVertex2D[0] + " " +
-                arrayOfVertex2D[1] + " " +
-                arrayOfVertex2D[2];
+        return "Triangle: vertices=" + getVertex(0) + " " +
+                getVertex(1) + " " +
+                getVertex(2);
     }
 
     /**
@@ -66,18 +51,17 @@ public class Triangle implements Measurable {
         if ( isDivided() ) {
             return false;
         }
-        Vertex2D ab = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[1]);
-        Vertex2D ac = arrayOfVertex2D[0].createMiddle(arrayOfVertex2D[2]);
-        Vertex2D bc = arrayOfVertex2D[1].createMiddle(arrayOfVertex2D[2]);
-        Triangle firstTriangle = new Triangle(arrayOfVertex2D[0],ab,ac);
-        Triangle secondTriangle = new Triangle(arrayOfVertex2D[1],ab,bc);
-        Triangle thirdTriangle = new Triangle(arrayOfVertex2D[2],bc,ac);
+        Vertex2D ab = getVertex(0).createMiddle(getVertex(1));
+        Vertex2D ac = getVertex(0).createMiddle(getVertex(2));
+        Vertex2D bc = getVertex(1).createMiddle(getVertex(2));
+        Triangle firstTriangle = new Triangle(getVertex(0),ab,ac);
+        Triangle secondTriangle = new Triangle(getVertex(1),ab,bc);
+        Triangle thirdTriangle = new Triangle(getVertex(2),bc,ac);
         arrayOfTriangle[0] = firstTriangle;
         arrayOfTriangle[1] = secondTriangle;
         arrayOfTriangle[2] = thirdTriangle;
         return true;
     }
-
 
     /**
      * Is triangle already divided?
@@ -103,9 +87,9 @@ public class Triangle implements Measurable {
      * @return true if Triangle is Equilateral
      */
     public boolean isEquilateral(){
-        double d1 = arrayOfVertex2D[0].distance(arrayOfVertex2D[1]);
-        double d2 = arrayOfVertex2D[0].distance(arrayOfVertex2D[2]);
-        double d3 = arrayOfVertex2D[1].distance(arrayOfVertex2D[2]);
+        double d1 = getVertex(0).distance(getVertex(1));
+        double d2 = getVertex(0).distance(getVertex(2));
+        double d3 = getVertex(1).distance(getVertex(2));
         double cmpAbs = 0.001;
         return Math.abs(d1-d2) < cmpAbs && Math.abs(d1-d3) < cmpAbs;
     }
@@ -121,16 +105,6 @@ public class Triangle implements Measurable {
                 arrayOfTriangle[i].divide(depth-1);
             }
         }
-    }
-
-    @Override
-    public double getWidth() {
-        return SimpleMath.maxX(this) - SimpleMath.minX(this);
-    }
-
-    @Override
-    public double getHeight(){
-        return SimpleMath.maxY(this) - SimpleMath.minY(this);
     }
 }
 

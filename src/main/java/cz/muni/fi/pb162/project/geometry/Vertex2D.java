@@ -61,4 +61,26 @@ public class Vertex2D {
         }
         return Math.sqrt(Math.pow(xCoordinate - vertex.getX(), 2) + Math.pow(yCoordinate - vertex.getY(), 2));
     }
+
+    /**
+     * Check if two Vertexes have same coordinates
+     * @param vertex compared vertex
+     * @return true if the have same coordinates, false otherwise
+     */
+    @Override
+    public boolean equals(Object vertex){
+        if (vertex == null) {
+            return false;
+        }
+        if (getClass() != vertex.getClass()) {
+            return false;
+        }
+        return ((Double.compare(xCoordinate, ((Vertex2D) vertex).getX()) == 0)
+                && (Double.compare(yCoordinate, ((Vertex2D) vertex).getY()) == 0));
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }
