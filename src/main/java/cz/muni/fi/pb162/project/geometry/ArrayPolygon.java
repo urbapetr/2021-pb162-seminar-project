@@ -31,9 +31,9 @@ public class ArrayPolygon extends SimplePolygon{
      */
     public Vertex2D getVertex(int i){
         if (i < 0) {
-            throw new IllegalArgumentException("negative i not possible");
+            throw new IllegalArgumentException("negative index not possible");
         }
-        return arrayOfVertices[i % arrayOfVertices.length];
+        return arrayOfVertices[i % getNumVertices()];
     }
 
     /**
@@ -41,16 +41,26 @@ public class ArrayPolygon extends SimplePolygon{
      * @param arrayPolygon Compared array
      * @return true if they are same, otherwise false
      */
-    public boolean equals(Vertex2D[] arrayPolygon){
-        if (arrayPolygon.length != arrayOfVertices.length) {
+    @Override
+    public boolean equals(Object arrayPolygon){
+        if (arrayPolygon == null || (getClass() != arrayPolygon.getClass())) {
+            return false;
+        }
+        ArrayPolygon cmpArray = (ArrayPolygon) arrayPolygon;
+        if (cmpArray.getNumVertices() != arrayOfVertices.length) {
             return false;
         }
         for (int i = 0; i < arrayOfVertices.length; i++){
-            if (!arrayPolygon[i].equals(arrayOfVertices[i])) {
+            if (!cmpArray.getVertex(i).equals(arrayOfVertices[i])) {
                 return false;
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 
     /**

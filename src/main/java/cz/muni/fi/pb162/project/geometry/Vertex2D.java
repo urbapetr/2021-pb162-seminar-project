@@ -67,19 +67,20 @@ public class Vertex2D {
      * @param vertex compared vertex
      * @return true if the have same coordinates, false otherwise
      */
-    public boolean equals(Vertex2D vertex){
+    @Override
+    public boolean equals(Object vertex){
         if (vertex == null) {
             return false;
         }
-        return ((xCoordinate == vertex.getX()) && (yCoordinate == vertex.getY()));
+        if (getClass() != vertex.getClass()) {
+            return false;
+        }
+        return ((Double.compare(xCoordinate, ((Vertex2D) vertex).getX()) == 0)
+                && (Double.compare(yCoordinate, ((Vertex2D) vertex).getY()) == 0));
     }
 
-    /**
-     * copy vertex
-     * @param vertex2D vertex which is copied
-     * @return copy of vertex
-     */
-    Vertex2D copyOf(Vertex2D vertex2D){
-        return new Vertex2D(vertex2D.getX(), vertex2D.getY());
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }
