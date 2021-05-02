@@ -14,15 +14,7 @@ public class ArrayPolygon extends SimplePolygon{
      */
     public ArrayPolygon(Vertex2D[] arrayOfVertices){
         super(arrayOfVertices);
-        /*if (arrayOfVertices == null || arrayOfVertices.length < 3) {
-            throw new IllegalArgumentException("array has less than 3 Veticles");
-        }
-        for (int i = 0; i < arrayOfVertices.length; i++){
-            if (arrayOfVertices[i] == null) {
-                throw new IllegalArgumentException("one of the Verticles is null");
-            }
-        }
-        this.arrayOfVertices = Arrays.copyOf(arrayOfVertices, arrayOfVertices.length);*/
+        this.arrayOfVertices = Arrays.copyOf(arrayOfVertices, arrayOfVertices.length);
     }
 
     /**

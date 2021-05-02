@@ -25,4 +25,23 @@ public class ColoredPolygon {
     public Color getColor() {
         return color;
     }
+
+    @Override
+    public boolean equals(Object object){
+        if (object == null) {
+            return false;
+        }
+        if (getClass() != object.getClass()) {
+            return false;
+        }
+        return (getColor() == ((ColoredPolygon) object).getColor()) &&
+                (getPolygon() == ((ColoredPolygon) object).getPolygon());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 7;
+        result = 7 * result + (int) (Double.doubleToLongBits(polygon.getNumVertices()));
+        return result;
+    }
 }

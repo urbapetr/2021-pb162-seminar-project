@@ -1,14 +1,17 @@
 package cz.muni.fi.pb162.project.geometry;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+
+import static cz.muni.fi.pb162.project.geometry.Color.BLACK;
 
 /**
  * @author Petr Urbanek
  */
 public class Paper implements Drawable{
 
-    private List<Vertex2D> drawnPolygons;
+    private Collection<ColoredPolygon> drawnPolygons = new ArrayList<>();
+    private Color color = BLACK;
 
     /**
      * Paper constructor without param
@@ -21,12 +24,12 @@ public class Paper implements Drawable{
      * @param drawable object
      */
     public Paper(Drawable drawable) {
-
+        drawnPolygons.add(new ColoredPolygon((Polygon) drawable, BLACK));
     }
 
     @Override
     public void changeColor(Color color) {
-
+        this.color = color;
     }
 
     @Override
@@ -36,21 +39,25 @@ public class Paper implements Drawable{
 
     @Override
     public void erasePolygon(ColoredPolygon polygon) {
-
+        drawnPolygons.remove(polygon);
     }
 
     @Override
     public void eraseAll() {
-
+        drawnPolygons = new ArrayList<>();
     }
 
     @Override
     public Collection<ColoredPolygon> getAllDrawnPolygons() {
-        return null;
+        return drawnPolygons;
     }
 
     @Override
     public int uniqueVerticesAmount() {
-        return 0;
+        int counter = 0;
+        for (int i = 0; i < drawnPolygons.size(); i++) {
+            counter++;
+        }
+        return counter;
     }
 }

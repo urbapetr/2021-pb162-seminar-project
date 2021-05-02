@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public class CollectionPolygon extends SimplePolygon {
 
-    private final List<Vertex2D> collectionOfVertex = new ArrayList<>();
+    private List<Vertex2D> collectionOfVertex = new ArrayList<>();
 
     /**
      * Collection polygon constructor
@@ -16,6 +17,12 @@ public class CollectionPolygon extends SimplePolygon {
      */
     public CollectionPolygon(Vertex2D[] array) {
         super(array);
+        try {
+            collectionOfVertex = Arrays.asList(array.clone());
+
+        } catch (ClassCastException ex) {
+            System.out.println("wrong input");
+        }
     }
 
     /**
@@ -24,6 +31,7 @@ public class CollectionPolygon extends SimplePolygon {
      */
     public CollectionPolygon(List<Vertex2D> listOfVertices) {
         super((Vertex2D[]) listOfVertices.toArray());
+        collectionOfVertex = List.copyOf(listOfVertices);
     }
 
     @Override
@@ -31,7 +39,7 @@ public class CollectionPolygon extends SimplePolygon {
         if (index < 0) {
             throw new IllegalArgumentException("negative index not possible");
         }
-        return collectionOfVertex.get(index);
+        return collectionOfVertex.get(index % getNumVertices());
     }
 
     @Override
