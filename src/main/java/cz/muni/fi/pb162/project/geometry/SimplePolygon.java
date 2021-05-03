@@ -7,18 +7,18 @@ import cz.muni.fi.pb162.project.utils.SimpleMath;
  */
 public abstract class SimplePolygon implements Polygon{
 
-
     /**
      * Simple polygon constructor
      * @param vertices of our polygon
+     * @throws IllegalArgumentException when null is occured
      */
-    public SimplePolygon(Vertex2D[] vertices){
+    public SimplePolygon(Object[] vertices) throws IllegalArgumentException{
         if (vertices == null){
-            throw new ClassCastException("null array");
+            throw new IllegalArgumentException("null array");
         }
-        for (Vertex2D vertex2D : vertices) {
+        for (Object vertex2D : vertices) {
             if (vertex2D == null) {
-                throw new ClassCastException("null in array");
+                throw new IllegalArgumentException("null in array");
             }
         }
     }

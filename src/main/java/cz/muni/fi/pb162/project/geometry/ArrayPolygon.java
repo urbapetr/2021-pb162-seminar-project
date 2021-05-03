@@ -2,6 +2,7 @@ package cz.muni.fi.pb162.project.geometry;
 
 import java.util.Arrays;
 /**
+ * Class that store vertices in array
  * @author Petr Urbanek
  */
 public class ArrayPolygon extends SimplePolygon{

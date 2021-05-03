@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
+ * Class that creates polygon with color
  * @author Petr Urbanek
  */
 public class ColoredPolygon {

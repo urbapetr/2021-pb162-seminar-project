@@ -2,14 +2,16 @@ package cz.muni.fi.pb162.project.geometry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
+ * Class that store vertices in list
  * @author Petr Urbanek
  */
 public class CollectionPolygon extends SimplePolygon {
 
-    private List<Vertex2D> collectionOfVertex = new ArrayList<>();
+    private final List<Vertex2D> collectionOfVertex;
 
     /**
      * Collection polygon constructor
@@ -17,12 +19,7 @@ public class CollectionPolygon extends SimplePolygon {
      */
     public CollectionPolygon(Vertex2D[] array) {
         super(array);
-        try {
-            collectionOfVertex = Arrays.asList(array.clone());
-
-        } catch (ClassCastException ex) {
-            System.out.println("wrong input");
-        }
+        collectionOfVertex = Arrays.asList(array.clone());
     }
 
     /**
@@ -30,7 +27,7 @@ public class CollectionPolygon extends SimplePolygon {
      * @param listOfVertices list of vertices
      */
     public CollectionPolygon(List<Vertex2D> listOfVertices) {
-        super((Vertex2D[]) listOfVertices.toArray());
+        super(listOfVertices.toArray());
         collectionOfVertex = List.copyOf(listOfVertices);
     }
 
@@ -80,10 +77,14 @@ public class CollectionPolygon extends SimplePolygon {
         if (getNumVertices() <= 1) {
             return null;
         }
-        Vertex2D[] newArray = new Vertex2D[getNumVertices()-1];
-        for (int i = 0; i < getNumVertices(); i++){
-            newArray[i] = getVertex(i+1);
+        Vertex2D whichVertex = getVertex(0);
+        for (int i = 1; i < getNumVertices(); i++){
+            if (getVertex(i).getX() < whichVertex.getX()){
+                whichVertex = getVertex(i);
+            }
         }
+        List<Vertex2D> newArray = new ArrayList<Vertex2D>(List.copyOf(collectionOfVertex));
+        newArray.removeAll(Collections.singletonList(whichVertex));
         return new CollectionPolygon(newArray);
     }
 }
