@@ -18,6 +18,7 @@ public class CollectionPolygon extends SimplePolygon {
     /**
      * Collection polygon constructor
      * @param array array of vertices
+     * @throws IllegalArgumentException when null is occured
      */
     public CollectionPolygon(Vertex2D[] array) throws MissingVerticesException {
         super(array);

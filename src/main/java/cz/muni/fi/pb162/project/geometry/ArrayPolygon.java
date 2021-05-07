@@ -14,6 +14,7 @@ public class ArrayPolygon extends SimplePolygon{
     /**
      * constructor of ArrayPolygon class
      * @param arrayOfVertices Vertexes witch will create polygon
+     * @throws IllegalArgumentException when null is occured
      */
     public ArrayPolygon(Vertex2D[] arrayOfVertices) throws MissingVerticesException {
         super(arrayOfVertices);

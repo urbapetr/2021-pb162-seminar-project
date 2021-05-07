@@ -87,7 +87,7 @@ public class Paper implements Drawable, PolygonFactory{
         if (vertices == null){
             throw new NullPointerException("null in argument");
         }
-        CollectionPolygon col = new CollectionPolygon(vertices)
+        CollectionPolygon col = new CollectionPolygon(vertices);
         do {
             try {
                 col = new CollectionPolygon(vertices);
