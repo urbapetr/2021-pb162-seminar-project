@@ -1,7 +1,5 @@
 package cz.muni.fi.pb162.project.geometry;
 
-import cz.muni.fi.pb162.project.exception.MissingVerticesException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +18,7 @@ public class CollectionPolygon extends SimplePolygon {
      * @param array array of vertices
      * @throws IllegalArgumentException when null is occured
      */
-    public CollectionPolygon(Vertex2D[] array) throws MissingVerticesException {
+    public CollectionPolygon(Vertex2D[] array) {
         super(array);
         collectionOfVertex = Arrays.asList(array.clone());
     }
@@ -29,7 +27,7 @@ public class CollectionPolygon extends SimplePolygon {
      * Constructor of collection polygon
      * @param listOfVertices list of vertices
      */
-    public CollectionPolygon(List<Vertex2D> listOfVertices) throws MissingVerticesException {
+    public CollectionPolygon(List<Vertex2D> listOfVertices){
         super(listOfVertices.toArray());
         collectionOfVertex = List.copyOf(listOfVertices);
     }

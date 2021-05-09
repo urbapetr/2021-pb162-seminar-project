@@ -83,18 +83,17 @@ public class Paper implements Drawable, PolygonFactory{
     }
 
     @Override
-    public Polygon tryToCreatePolygon(List<Vertex2D> vertices) throws MissingVerticesException {
+    public Polygon tryToCreatePolygon(List<Vertex2D> vertices) {
         if (vertices == null){
             throw new NullPointerException("null in argument");
         }
+        List<Vertex2D> newList = new ArrayList<>(vertices);
         CollectionPolygon col = new CollectionPolygon(vertices);
         do {
             try {
-                col = new CollectionPolygon(vertices);
+                col = new CollectionPolygon(newList);
             } catch (IllegalArgumentException ex) {
-                vertices.remove(null);
-            } catch (MissingVerticesException ex) {
-                throw new MissingVerticesException("small input");
+                newList.remove(null);
             }
         } while (false);
         return col;
@@ -102,6 +101,38 @@ public class Paper implements Drawable, PolygonFactory{
 
     @Override
     public void tryToDrawPolygons(List<List<Vertex2D>> collectionPolygons) throws EmptyDrawableException {
+        int polygonsPainted = 0;
+        Exception cause = null;
+        for (List<Vertex2D> listOfVertex : collectionPolygons) {
+            try {
+                Polygon newPolygon = tryToCreatePolygon(listOfVertex);
+                drawPolygon(newPolygon);
+                polygonsPainted = polygonsPainted + 1;
+            } catch (TransparentColorException tcex){
+                changeColor(BLACK);
+                cause = tcex;
+            } catch (MissingVerticesException | NullPointerException ex) {
+                cause = ex;
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+        if (polygonsPainted == 0) {
+            throw new EmptyDrawableException(cause);
+        }
+    }
 
+    /**
+     * Return Collection of polygons with given color
+     * @param color of polygons
+     * @return polygons with given color
+     */
+    public Collection<Polygon> getPolygonsWithColor(Color color) {
+        Collection<Polygon> drawnPolygonsWithGivenColor = new ArrayList<>();
+        for (ColoredPolygon polygon : drawnPolygons) {
+            if (polygon.getColor() == color) {
+                drawnPolygonsWithGivenColor.add(polygon.getPolygon());
+            }
+        }
+        return drawnPolygonsWithGivenColor;
     }
 }

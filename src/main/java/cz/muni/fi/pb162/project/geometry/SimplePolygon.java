@@ -13,7 +13,7 @@ public abstract class SimplePolygon implements Polygon{
      * @param vertices of our polygon
      * @throws IllegalArgumentException when null is occured
      */
-    public SimplePolygon(Object[] vertices) throws MissingVerticesException {
+    public SimplePolygon(Object[] vertices) {
         if (vertices == null){
             throw new IllegalArgumentException("null array");
         }

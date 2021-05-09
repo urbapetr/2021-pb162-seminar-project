@@ -1,7 +1,5 @@
 package cz.muni.fi.pb162.project.geometry;
 
-import cz.muni.fi.pb162.project.exception.MissingVerticesException;
-
 import java.util.Arrays;
 /**
  * Class that store vertices in array
@@ -16,7 +14,7 @@ public class ArrayPolygon extends SimplePolygon{
      * @param arrayOfVertices Vertexes witch will create polygon
      * @throws IllegalArgumentException when null is occured
      */
-    public ArrayPolygon(Vertex2D[] arrayOfVertices) throws MissingVerticesException {
+    public ArrayPolygon(Vertex2D[] arrayOfVertices) {
         super(arrayOfVertices);
         this.arrayOfVertices = Arrays.copyOf(arrayOfVertices, arrayOfVertices.length);
     }

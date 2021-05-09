@@ -3,7 +3,7 @@ package cz.muni.fi.pb162.project.exception;
 /**
  * @author Petr Urbanek
  */
-public class EmptyDrawableException extends RuntimeException{
+public class EmptyDrawableException extends Exception{
 
     /**
      * Constructor with only message

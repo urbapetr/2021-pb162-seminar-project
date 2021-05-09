@@ -3,7 +3,7 @@ package cz.muni.fi.pb162.project.exception;
 /**
  * @author Petr Urbanek
  */
-public class MissingVerticesException extends Exception{
+public class MissingVerticesException extends RuntimeException{
 
     /**
      * Constructor with only message

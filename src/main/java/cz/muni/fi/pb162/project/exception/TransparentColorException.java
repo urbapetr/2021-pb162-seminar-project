@@ -3,7 +3,7 @@ package cz.muni.fi.pb162.project.exception;
 /**
  * @author Petr Urbanek
  */
-public class TransparentColorException extends RuntimeException{
+public class TransparentColorException extends Exception{
 
     /**
      * Constructor with only message
