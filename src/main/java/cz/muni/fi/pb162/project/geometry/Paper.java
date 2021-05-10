@@ -89,7 +89,9 @@ public class Paper implements Drawable, PolygonFactory{
         }
         List<Vertex2D> newList = new ArrayList<>(vertices);
         CollectionPolygon col;
-        while (newList.remove(null));
+        while (newList.remove(null)) {
+            newList.remove(null);
+        }
 
         col = new CollectionPolygon(newList);
         return col;
