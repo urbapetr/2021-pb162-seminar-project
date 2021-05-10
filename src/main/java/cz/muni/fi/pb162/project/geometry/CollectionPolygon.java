@@ -1,5 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
+import cz.muni.fi.pb162.project.exception.MissingVerticesException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,6 +23,9 @@ public class CollectionPolygon extends SimplePolygon {
     public CollectionPolygon(Vertex2D[] array) {
         super(array);
         collectionOfVertex = Arrays.asList(array.clone());
+        if (collectionOfVertex.size() < 3) {
+            throw new MissingVerticesException("Less than 3 vertices");
+        }
     }
 
     /**
@@ -30,6 +35,9 @@ public class CollectionPolygon extends SimplePolygon {
     public CollectionPolygon(List<Vertex2D> listOfVertices){
         super(listOfVertices.toArray());
         collectionOfVertex = List.copyOf(listOfVertices);
+        if (collectionOfVertex.size() < 3) {
+            throw new MissingVerticesException("Less than 3 vertices");
+        }
     }
 
     @Override

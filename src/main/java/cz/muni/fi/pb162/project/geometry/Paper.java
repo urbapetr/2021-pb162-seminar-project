@@ -88,14 +88,10 @@ public class Paper implements Drawable, PolygonFactory{
             throw new NullPointerException("null in argument");
         }
         List<Vertex2D> newList = new ArrayList<>(vertices);
-        CollectionPolygon col = new CollectionPolygon(vertices);
-        do {
-            try {
-                col = new CollectionPolygon(newList);
-            } catch (IllegalArgumentException ex) {
-                newList.remove(null);
-            }
-        } while (false);
+        CollectionPolygon col;
+        while (newList.remove(null));
+
+        col = new CollectionPolygon(newList);
         return col;
     }
 
@@ -111,9 +107,8 @@ public class Paper implements Drawable, PolygonFactory{
             } catch (TransparentColorException tcex){
                 changeColor(BLACK);
                 cause = tcex;
-            } catch (MissingVerticesException | NullPointerException ex) {
+            } catch (MissingVerticesException | NullPointerException | IllegalArgumentException ex) {
                 cause = ex;
-            } catch (IllegalArgumentException ignored) {
             }
         }
         if (polygonsPainted == 0) {

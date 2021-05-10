@@ -19,7 +19,7 @@ public abstract class SimplePolygon implements Polygon{
         }
         for (Object vertex2D : vertices) {
             if (vertex2D == null) {
-                throw new IllegalArgumentException("null in array");
+                throw new IllegalArgumentException("only nulls in array");
             }
         }
         if (vertices.length < 3) {
