@@ -35,8 +35,8 @@ public class ColoredPolygon {
         if (getClass() != object.getClass()) {
             return false;
         }
-        return (getColor() == ((ColoredPolygon) object).getColor()) &&
-                (getPolygon() == ((ColoredPolygon) object).getPolygon());
+        return (getColor().equals(((ColoredPolygon) object).getColor()) &&
+                getPolygon().equals(((ColoredPolygon) object).getPolygon()));
     }
 
     @Override
