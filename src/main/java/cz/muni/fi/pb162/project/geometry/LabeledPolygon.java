@@ -13,7 +13,7 @@ import java.util.Comparator;
  */
 public final class LabeledPolygon extends SimplePolygon implements Labelable, Sortable{
 
-    private Map<String, Vertex2D> sortedList;
+    private final Map<String, Vertex2D> sortedList;
 
     /**
      * Private Labal constructor
@@ -31,7 +31,7 @@ public final class LabeledPolygon extends SimplePolygon implements Labelable, So
      */
     public static class Builder implements Buildable<LabeledPolygon>{
 
-        private Map<String, Vertex2D> sortedList = new HashMap<>();
+        private final Map<String, Vertex2D> sortedList = new HashMap<>();
 
         /**
          * add new key with vertex, if the key is already there, just replace it
