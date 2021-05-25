@@ -5,8 +5,8 @@ package cz.muni.fi.pb162.project.geometry;
  * @author Petr Urbanek
  */
 public class Vertex2D implements Comparable<Vertex2D>{
-    private final double xCoordinate;
-    private final double yCoordinate;
+    private final double x;
+    private final double y;
 
     /**
      * Create Vertex object
@@ -14,27 +14,27 @@ public class Vertex2D implements Comparable<Vertex2D>{
      * @param y is coordinate y
      */
     public Vertex2D(double x, double y){
-        xCoordinate = x;
-        yCoordinate = y;
+        this.x = x;
+        this.y = y;
     }
 
     /**
      * @return x value
      */
     public double getX() {
-        return xCoordinate;
+        return x;
     }
 
     /**
      * @return y value
      */
     public double getY() {
-        return yCoordinate;
+        return y;
     }
 
     @Override
     public String toString() {
-        return "[" + xCoordinate + ", " + yCoordinate + "]";
+        return "[" + x + ", " + y + "]";
     }
 
     /**
@@ -43,8 +43,8 @@ public class Vertex2D implements Comparable<Vertex2D>{
      * @return vertex in the middle
      */
     public Vertex2D createMiddle(Vertex2D vertex) {
-        double newX = (vertex.getX() + xCoordinate) / 2;
-        double newY = (vertex.getY() + yCoordinate) / 2;
+        double newX = (vertex.getX() + x) / 2;
+        double newY = (vertex.getY() + y) / 2;
         Vertex2D newVertex;
         newVertex = new Vertex2D(newX, newY);
         return newVertex;
@@ -59,7 +59,7 @@ public class Vertex2D implements Comparable<Vertex2D>{
         if (vertex == null) {
             return -1.0;
         }
-        return Math.sqrt(Math.pow(xCoordinate - vertex.getX(), 2) + Math.pow(yCoordinate - vertex.getY(), 2));
+        return Math.sqrt(Math.pow(x - vertex.getX(), 2) + Math.pow(y - vertex.getY(), 2));
     }
 
     /**
@@ -75,15 +75,15 @@ public class Vertex2D implements Comparable<Vertex2D>{
         if (getClass() != vertex.getClass()) {
             return false;
         }
-        return ((Double.compare(xCoordinate, ((Vertex2D) vertex).getX()) == 0)
-                && (Double.compare(yCoordinate, ((Vertex2D) vertex).getY()) == 0));
+        return ((Double.compare(x, ((Vertex2D) vertex).getX()) == 0)
+                && (Double.compare(y, ((Vertex2D) vertex).getY()) == 0));
     }
 
     @Override
     public int hashCode() {
         int result = 7;
-        result = 7 * result + (int) (Double.doubleToLongBits(xCoordinate));
-        result = 7 * result + (int) (Double.doubleToLongBits(yCoordinate));
+        result = 7 * result + (int) (Double.doubleToLongBits(x));
+        result = 7 * result + (int) (Double.doubleToLongBits(y));
         return result;
     }
 
