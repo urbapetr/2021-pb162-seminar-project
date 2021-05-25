@@ -221,12 +221,9 @@ public final class LabeledPolygon extends SimplePolygon implements Labelable, So
      */
     public void writeJson(OutputStream os) {
         String json = gson.toJson(sortedList);
-        OutputStreamWriter osw = new OutputStreamWriter(os);
-        BufferedWriter bw = new BufferedWriter(osw);
-        System.out.println(json + "Hello World!");
+        byte[] bytes = json.getBytes();
         try {
-            bw.write(json + "Hello World!");
-            bw.close();
+            os.write(bytes);
         } catch (Throwable te) {
             throw new IllegalArgumentException("bad argument");
         }
