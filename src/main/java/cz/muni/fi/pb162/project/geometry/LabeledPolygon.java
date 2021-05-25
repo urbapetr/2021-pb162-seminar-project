@@ -3,14 +3,24 @@ package cz.muni.fi.pb162.project.geometry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.File;
 import java.util.HashMap;
-import java.util.Set;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.Collection;
 import java.util.TreeSet;
+import java.util.Set;
 import java.util.Comparator;
+
 
 /**
  * class that store verteces in Map
@@ -18,7 +28,7 @@ import java.util.Comparator;
  */
 public final class LabeledPolygon extends SimplePolygon implements Labelable, Sortable, PolygonWritable {
 
-    public Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private final Map<String, Vertex2D> sortedList;
 
@@ -61,7 +71,7 @@ public final class LabeledPolygon extends SimplePolygon implements Labelable, So
      */
     public static class Builder implements Buildable<LabeledPolygon>, PolygonReadable {
 
-        private final Map<String, Vertex2D> sortedList = new HashMap<>();
+        private final Map<String, Vertex2D> sortedList = new TreeMap<>();
 
         /**
          * add new key with vertex, if the key is already there, just replace it
@@ -205,13 +215,17 @@ public final class LabeledPolygon extends SimplePolygon implements Labelable, So
         return duplicateVertices;
     }
 
+    /**
+     * Write into file and on system output vertices by pretty json forma t
+     * @param os file
+     */
     public void writeJson(OutputStream os) {
         String json = gson.toJson(sortedList);
-        System.out.println(json);
         OutputStreamWriter osw = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(osw);
+        System.out.println(json + "Hello World!");
         try {
-            bw.write(json);
+            bw.write(json + "Hello World!");
             bw.close();
         } catch (Throwable te) {
             throw new IllegalArgumentException("bad argument");
